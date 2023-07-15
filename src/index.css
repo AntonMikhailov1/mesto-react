@@ -9,6 +9,7 @@
 /* Page */
 
 @import "./blocks/page/page.css";
+@import "./blocks/page/__container/page__container.css";
 
 /* Content */
 
@@ -59,8 +60,6 @@
 @import "./blocks/popup/__close-btn/popup__close-btn.css";
 @import "./blocks/popup/__container/popup__container.css";
 @import "./blocks/popup/__image-container/popup__image-container.css";
-@import "./blocks/popup/__avatar-container/popup__avatar-container.css";
-@import "./blocks/popup/__confirm-container/popup__confirm-container.css";
 @import "./blocks/popup/__image/popup__image.css";
 @import "./blocks/popup/__image-caption/popup__image-caption.css";
 @import "./blocks/popup/__form/popup__form.css";
