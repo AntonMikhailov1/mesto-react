@@ -16,7 +16,8 @@ export default function Main(props) {
       setUserAvatar(userData.avatar);
       // const myId = userData._id;
       setCards(cardData);
-    });
+    })
+    .catch(err => console.error(err));
   },[]);
 
   return (
