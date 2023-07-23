@@ -73,18 +73,10 @@ class Api {
     }).then((res) => this.#checkResponse(res));
   }
 
-  addCardLike(cardId) {
+  changeLikeCardStatus(cardId, likeStatus) {
+    const methodName = likeStatus ? "PUT" : "DELETE";
     return fetch(`${this.#url}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: {
-        authorization: this.#token,
-      },
-    }).then((res) => this.#checkResponse(res));
-  }
-
-  deleteCardLike(cardId) {
-    return fetch(`${this.#url}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: methodName,
       headers: {
         authorization: this.#token,
       },
@@ -100,4 +92,4 @@ const api = new Api({
   },
 });
 
-export default api 
+export default api;
