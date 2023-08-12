@@ -13,11 +13,6 @@ Mesto-react - проект для Яндекс.Практикум на React
 - API
 Проект подключен к серверу через API
 
-## Githab Pages link
-
-https://antonmikhailov1.github.io/mesto-react/
-
-
 ## Author
 
 - [@AntonMikhailov1](https://github.com/AntonMikhailov1)
