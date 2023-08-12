@@ -50,16 +50,24 @@ export default function App() {
 
   function handleCardDelete(card) {
     // setIsConfirmationPopupOpen(true);
-    api.deleteCard(card._id).then(() => {
-      setCards((state) => state.filter((c) => c._id !== card._id));
-    });
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.error(err));
   }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.error(err));
   }
 
   function closeAllPopup() {
@@ -71,24 +79,33 @@ export default function App() {
   }
 
   function handleUpdateUser(userData) {
-    api.setProfileInfo(userData).then((currentUserState) => {
-      setCurrentUser(currentUserState);
-    });
-    closeAllPopup();
+    api
+      .setProfileInfo(userData)
+      .then((currentUserState) => {
+        setCurrentUser(currentUserState);
+        closeAllPopup();
+      })
+      .catch((err) => console.error(err));
   }
 
   function handleUpdateAvatar(userData) {
-    api.setAvatar(userData).then((currentUserState) => {
-      setCurrentUser(currentUserState);
-    });
-    closeAllPopup();
+    api
+      .setAvatar(userData)
+      .then((currentUserState) => {
+        setCurrentUser(currentUserState);
+        closeAllPopup();
+      })
+      .catch((err) => console.error(err));
   }
 
   function handleAddPlace(cardData) {
-    api.addCard(cardData).then((newCard) => {
-      setCards([newCard, ...cards]); 
-    });
-    closeAllPopup();
+    api
+      .addCard(cardData)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopup();
+      })
+      .catch((err) => console.error(err));
   }
 
   return (

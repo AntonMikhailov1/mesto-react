@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function EditAvatarPopup(props) {
@@ -8,10 +8,13 @@ export default function EditAvatarPopup(props) {
     e.preventDefault();
 
     props.onUpdateAvatar({
-      avatar: avatarRef.current.value
+      avatar: avatarRef.current.value,
     });
-    avatarRef.current.value = "";
   }
+
+  useEffect(() => {
+    avatarRef.current.value = "";
+  }, [props.isOpen]);
 
   return (
     <PopupWithForm
@@ -20,23 +23,20 @@ export default function EditAvatarPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      children={
-        <>
-          <input
-            className="popup__field popup__field_input_link"
-            type="url"
-            name="avatar"
-            defaultValue=""
-            placeholder="Ссылка на картинку"
-            required=""
-            ref={avatarRef}
-          />
-          <span className="avatar-error popup__field-error" />
-          <button className="popup__submit-btn" type="submit">
-            Сохранить
-          </button>
-        </>
-      }
-    />
+    >
+      <input
+        className="popup__field popup__field_input_link"
+        type="url"
+        name="avatar"
+        defaultValue=""
+        placeholder="Ссылка на картинку"
+        required=""
+        ref={avatarRef}
+      />
+      <span className="avatar-error popup__field-error" />
+      <button className="popup__submit-btn" type="submit">
+        Сохранить
+      </button>
+    </PopupWithForm>
   );
 }

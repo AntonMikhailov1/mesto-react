@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
@@ -6,12 +6,7 @@ export default function EditProfilePopup(props) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const currentUser = React.useContext(CurrentUserContext);
-
-  useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
+  const currentUser = useContext(CurrentUserContext);
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -28,7 +23,14 @@ export default function EditProfilePopup(props) {
       name,
       about: description,
     });
-  } 
+  }
+
+  useEffect(() => {
+    if (props.isOpen) {
+      setName(currentUser.name);
+      setDescription(currentUser.about);
+    }
+  }, [props.isOpen, currentUser]);
 
   return (
     <PopupWithForm
@@ -38,35 +40,32 @@ export default function EditProfilePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      children={
-        <>
-          <input
-            className="popup__field popup__field_input_name"
-            type="text"
-            name="name"
-            defaultValue={name}
-            required=""
-            minLength={2}
-            maxLength={40}
-            onChange={handleNameChange}
-          />
-          <span className="name-error popup__field-error" />
-          <input
-            className="popup__field popup__field_input_about"
-            type="text"
-            name="about"
-            defaultValue={description}
-            required=""
-            minLength={2}
-            maxLength={200}
-            onChange={handleDescriptionChange}
-          />
-          <span className="about-error popup__field-error" />
-          <button className="popup__submit-btn" type="submit">
-            Сохранить
-          </button>
-        </>
-      }
-    />
+    >
+      <input
+        className="popup__field popup__field_input_name"
+        type="text"
+        name="name"
+        defaultValue={name}
+        required=""
+        minLength={2}
+        maxLength={40}
+        onChange={handleNameChange}
+      />
+      <span className="name-error popup__field-error" />
+      <input
+        className="popup__field popup__field_input_about"
+        type="text"
+        name="about"
+        defaultValue={description}
+        required=""
+        minLength={2}
+        maxLength={200}
+        onChange={handleDescriptionChange}
+      />
+      <span className="about-error popup__field-error" />
+      <button className="popup__submit-btn" type="submit">
+        Сохранить
+      </button>
+    </PopupWithForm>
   );
 }
