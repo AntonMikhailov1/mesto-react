@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function EditAvatarPopup(props) {
-  const avatarRef = React.useRef();
+  const avatarRef = useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,7 +28,6 @@ export default function EditAvatarPopup(props) {
         className="popup__field popup__field_input_link"
         type="url"
         name="avatar"
-        defaultValue=""
         placeholder="Ссылка на картинку"
         required=""
         ref={avatarRef}

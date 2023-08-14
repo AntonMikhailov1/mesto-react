@@ -40,22 +40,22 @@ export default function AddPlacePopup(props) {
         className="popup__field popup__field_input_name"
         type="text"
         name="name"
-        defaultValue=""
         placeholder="Название"
         required=""
         minLength={2}
         maxLength={30}
         onChange={handleNameChange}
+        value={name}
       />
       <span className="name-error popup__field-error" />
       <input
         className="popup__field popup__field_input_link"
         type="url"
         name="link"
-        defaultValue=""
         placeholder="Ссылка на картинку"
         required=""
         onChange={handleLinkChange}
+        value={link}
       />
       <span className="link-error popup__field-error" />
       <button className="popup__submit-btn" type="submit">

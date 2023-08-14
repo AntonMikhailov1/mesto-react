@@ -45,7 +45,7 @@ export default function EditProfilePopup(props) {
         className="popup__field popup__field_input_name"
         type="text"
         name="name"
-        defaultValue={name}
+        value={name}
         required=""
         minLength={2}
         maxLength={40}
@@ -56,7 +56,7 @@ export default function EditProfilePopup(props) {
         className="popup__field popup__field_input_about"
         type="text"
         name="about"
-        defaultValue={description}
+        value={description}
         required=""
         minLength={2}
         maxLength={200}
